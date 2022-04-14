@@ -1,0 +1,15 @@
+{
+  "name": "pasze/mvc",
+  "autoload": {
+    "psr-4": {
+      "app\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "danielPaszek",
+      "email": "paszekdaniel2001@gmail.com"
+    }
+  ],
+  "require": {}
+}
