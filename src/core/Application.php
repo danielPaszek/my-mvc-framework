@@ -7,13 +7,17 @@ class Application {
     public Router $router;
     public Request $request;
     public Response $response;
+    public Database $db;
+    public View $view;
     public static Application $app;
-    public function __construct()
+    public function __construct(string $root, array $config)
     {
-        self::$ROOT = realpath('../').'/';
+        self::$ROOT = $root;
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
+        $this->view = new View();
+        $this->db = new Database($config['db']);
         self::$app = $this;
     }
     public function run() {
