@@ -7,6 +7,7 @@
 [x] - views, layout, components
 [] - user session, hashing
 [] - middleware, guards
+[] - something more?
 
 ### Special files:
 
