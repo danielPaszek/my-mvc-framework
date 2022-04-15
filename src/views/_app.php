@@ -13,7 +13,14 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    {{.Navbar}}
+    <?php
+
+use app\core\Application;
+
+    include_once Application::$ROOT.'views/components/Navbar.php';
+    ?>
+    <div class="container mt-4">
     {{content}}    
+    </div>
   </body>
 </html>
