@@ -4,15 +4,15 @@ namespace app\controllers;
 
 use app\core\BaseController;
 use app\core\Request;
-use app\models\RegisterModel;
+use app\models\User;
 
 class AuthController extends BaseController {
     public static function getLogin() {
         return self::render('login');
     }
     public static function getRegister() {
-        $registerModel = new RegisterModel();
-        return self::render('register', ['model' => $registerModel]);
+        $user = new User();
+        return self::render('register', ['model' => $user]);
     }
     public static function handleLogin(Request $req)
     {
@@ -20,13 +20,14 @@ class AuthController extends BaseController {
     }
     public static function handleRegister(Request $req)
     {
-        $registerModel = new RegisterModel();
-        $registerModel->loadData(($req->getBody()));
-        if($registerModel->validate()) {
+        $user = new User();
+        $user->loadData(($req->getBody()));
+        if($user->validate()) {
+            $user->save();
             return 'Success';
         }
         return self::render('register', [
-            'model' => $registerModel
+            'model' => $user
         ]);
     }
 
