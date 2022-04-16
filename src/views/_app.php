@@ -20,6 +20,14 @@ use app\core\Application;
     include_once Application::$ROOT.'views/components/Navbar.php';
     ?>
     <div class="container mt-4">
+      <?php
+      $flag = Application::$app->session->getFlash('register_success');
+      if($flag) {
+        echo '
+        <div class="bg-success py-4"> '.$flag.' </div>
+        ';
+      }
+      ?>
     {{content}}    
     </div>
   </body>

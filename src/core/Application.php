@@ -9,6 +9,7 @@ class Application {
     public Response $response;
     public Database $db;
     public View $view;
+    public Session $session;
     public static Application $app;
     public function __construct(string $root, array $config)
     {
@@ -17,6 +18,7 @@ class Application {
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
         $this->view = new View();
+        $this->session = new Session();
         $this->db = new Database($config['db']);
         self::$app = $this;
     }

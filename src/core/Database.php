@@ -56,4 +56,7 @@ class Database {
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
     }
+    public static function prepare($sql) {
+        return Application::$app->db->pdo->prepare($sql);
+    }
 }

@@ -42,6 +42,19 @@ abstract class Model {
                 if($ruleName === self::RULE_MATCH && $value !== $this->{$rule[1]}) {
                     $this->addError($name, self::RULE_MATCH, $rule[1]);
                 }
+                if($ruleName === self::RULE_UNIQUE) {
+                    $className = $rule['class'];
+                    $uniqueCol = $rule['column'] ?? $name;
+                    $tableName = $className::tableName();
+                    $statement = Application::$app->db->prepare("SELECT * 
+                    FROM $tableName WHERE $uniqueCol = :col");
+                    $statement->bindValue(":col", $value);
+                    $statement->execute();
+                    $record = $statement->fetchObject();
+                    if($record) {
+                        $this->addError($name, self::RULE_UNIQUE, $name);
+                    }
+                }
             }
         }
         return empty($this->errors);
@@ -59,7 +72,7 @@ abstract class Model {
             self::RULE_MATCH => "This field must be the same as $param",
             self::RULE_MAX => "Max length of this filed is $param",
             self::RULE_MIN => "Min length of this filed is $param",
-            self::RULE_UNIQUE => "This $param must be unique"
+            self::RULE_UNIQUE => "This $param is already taken"
         };
     }
     public function getFirstError($attribute)

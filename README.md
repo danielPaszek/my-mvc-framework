@@ -3,10 +3,15 @@
 ### Still in building :)
 
 [x] - routing, controllers
+
 [x] - model, db, migrations...
+
 [x] - views, layout, components
+
 [] - user session, hashing
+
 [] - middleware, guards
+
 [] - something more?
 
 ### Special files:

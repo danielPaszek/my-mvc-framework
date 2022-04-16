@@ -14,7 +14,6 @@ abstract class DBModel extends Model {
         foreach ($columns as $col) {
             $statement->bindValue(":$col", $this->{$col});
         }
-        var_dump($statement);
         $statement->execute();
         return true;
     }
